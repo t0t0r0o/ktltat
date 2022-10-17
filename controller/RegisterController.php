@@ -21,7 +21,15 @@ public function list()
 //add Register
 function add()
 {
-require "views/register/add.php";
+    //Lấy ra danh sách sinh viên
+    $studentRepository = new StudentRepository();
+    $students=$studentRepository->getAll();
+
+    //Lấy ra danh sách môn học
+    $subjectRepository = new SubjectRepository();
+    $subjects=$subjectRepository->getAll();
+
+    require "views/register/add.php";
 }
 
 function save(){

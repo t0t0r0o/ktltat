@@ -29,7 +29,6 @@ class RegisterRepository {
                 $register = new Register($row["id"], $row["student_id"], $row["subject_id"], $row["score"], $row["student_name"], $row["subject_name"]);
                 $registers[] = $register;
             }
-
         }
         return $registers;
     }
@@ -38,9 +37,8 @@ class RegisterRepository {
         global $conn;
         $student_id = $data["student_id"];
         $subject_id = $data["subject_id"];
-        $score = $data["score"];
-        $sql = "INSERT INTO register (student_id, subject_id,score) 
-            VALUES('$student_id', $subject_id,$score)";
+        $sql = "INSERT INTO register (student_id, subject_id) 
+            VALUES('$student_id', $subject_id)";
         if ($conn->query($sql)) {
             return true;
         }
@@ -49,7 +47,7 @@ class RegisterRepository {
     }
 
     function find($id) {
-        $cond = "id =$id";
+        $cond = "register.id =$id";
         $registers = $this->fetch($cond);
         $register = current($registers); //Lấy register tại vị trí con trỏ
         return $register;
@@ -57,11 +55,9 @@ class RegisterRepository {
 
     function update($register) {
         global $conn;
-        $student_id = $register->student_id;
-        $subject_id = $register->subject_id;
         $score = $register->score;
         $id = $register->id;
-        $sql = "UPDATE register SET student_id='$student_id',subject_id='$subject_id',score=$score WHERE id=$id";
+        $sql = "UPDATE register SET score=$score WHERE id=$id";
 
         if ($conn->query($sql)) {
             return true;

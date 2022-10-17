@@ -2,7 +2,7 @@
 require "layout/header.php"
 ?>
 <h1>Thêm đăng ký môn học</h1>
-<form action="list.html" method="POST">
+<form action="/?c=register&a=save" method="POST">
     <div class="container">
         <div class="row">
             <div class="col-md-5">
@@ -10,9 +10,14 @@ require "layout/header.php"
                     <label for="student_id">Tên sinh viên</label>
                     <select class="form-control" name="student_id" id="student_id" required>
                         <option value="">Vui lòng chọn sinh viên</option>
-                        <option value="1">1 - Nguyễn Thị Bé Bảy</option>
-                        <option value="2">2 - Nguyễn Văn Tèo</option>
-                        <option value="3">3 - Cao Thị Mẫn</option>
+                        <?php
+                        foreach ($students as $student) {
+                            ?>
+                            <option value="<?=$student->id?>"><?=$student->id?> - <?=$student->name?></option>
+                            <?php
+                        }
+                        ?>
+
                     </select>
                 </div>
                 <div class="form-group">
@@ -20,6 +25,14 @@ require "layout/header.php"
                     <span id="load" class="text-primary"></span>
                     <select class="form-control" name="subject_id" id="subject_id" required>
                         <option value="">Vui lòng chọn môn học</option>
+                        <?php 
+                            foreach ($subjects as $subject) {
+                                ?>
+                                    <option value="<?=$subject->id?>"><?=$subject->id?> - <?=$subject->name?></option>
+                                <?php
+                            }
+                        
+                        ?>
                     </select>
                 </div>
                 <div class="form-group">
