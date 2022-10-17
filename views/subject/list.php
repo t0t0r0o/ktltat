@@ -3,7 +3,7 @@ require "layout/header.php"
 ?>
 <h1>Danh sách Môn Học</h1>
 <a href="/?c=subject&a=add" class="btn btn-info">Add</a>
-<form action="/?c=subject" method="GET">
+<form action="/" method="GET">
     <label class="form-inline justify-content-end">Tìm kiếm: <input type="search" name="search" class="form-control" value="<?= $search ?>">
         <button class="btn btn-danger">Tìm</button>
     </label>

@@ -2,9 +2,10 @@
 require "layout/header.php"
 ?>
 <h1>Danh sách sinh viên đăng ký môn học</h1>
-<a href="add.html" class="btn btn-info">Add</a>
-<form action="list.html" method="GET">
-    <label class="form-inline justify-content-end">Tìm kiếm: <input type="search" name="search" class="form-control" value="">
+<a href="/?c=register&a=add" class="btn btn-info">Add</a>
+<!-- tham số params ở action seacrch ko có ý nghĩa với phương thức GET -->
+<form action="/" method="GET">
+    <label class="form-inline justify-content-end">Tìm kiếm: <input type="search" name="search" class="form-control" value="<?= $search ?>">
         <button class="btn btn-danger">Tìm</button>
     </label>
     <input type="hidden" name="c" value="register">
@@ -29,14 +30,14 @@ require "layout/header.php"
             $order++;
             ?>
             <tr>
-                <td>1</td>
-                <td>1</td>
-                <td>Nguyễn Thị Bé Bảy</td>
-                <td>1</td>
-                <td>Toán</td>
-                <td>5</td>
-                <td><a href="edit.html">Cập nhật điểm</a></td>
-                <td><a onclick="return confirm('Bạn muốn xóa đăng ký này phải không?')" href="list.html">Xóa</a></td>
+                <td><?= $order ?></td>
+                <td><?= $register->student_id ?></td>
+                <td><?= $register->student_name ?></td>
+                <td><?= $register->subject_id ?></td>
+                <td><?= $register->subject_name ?></td>
+                <td><?= $register->score ?></td>
+                <td><a href="/?c=register&a=edit&id=<?= $register->id ?>">Cập nhật điểm</a></td>
+                <td><button class="btn btn-danger btn-sm delete" data-url="/?c=register&a=delete&id=<?= $register->id ?>">Xóa</button></td>
             </tr>
             <?php
         }
@@ -44,7 +45,7 @@ require "layout/header.php"
     </tbody>
 </table>
 <div>
-    <span>Số lượng: 4</span>
+    <span>Số lượng: <?= count($registers) ?></span>
 </div>
 <?php
 require "layout/footer.php"

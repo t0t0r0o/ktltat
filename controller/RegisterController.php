@@ -53,8 +53,8 @@ function update(){
     $register=$registerRepository->find($id);
     $register->student_id=$_POST["student_id"];
     $register->subject_id=$_POST["subject_id"];
+    $register->score=$_POST["score"];
   
-
     if($registerRepository->update($register)){
     $_SESSION["success"] = "Đã cập nhật đăng ký môn học thành công";
     }
