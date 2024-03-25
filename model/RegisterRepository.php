@@ -5,7 +5,7 @@ class RegisterRepository {
     public $error;
 
     function getBySearch($search) {
-        $cond = "student.name LIKE '%$search%' OR subject.name LIKE '%$search%'";
+        $cond = "user.name LIKE '%$search%' OR subject.name LIKE '%$search%'";
         $registers = $this->fetch($cond);
         return $registers;
     }
@@ -16,8 +16,8 @@ class RegisterRepository {
 
     function fetch($cond = null) {
         global $conn;
-        $sql = "SELECT register.*, student.name AS student_name, subject.name AS subject_name FROM register 
-            JOIN student ON register.student_id = student.id
+        $sql = "SELECT register.*, user.name AS student_name, subject.name AS subject_name FROM register 
+            JOIN user ON register.student_id = user.id
             JOIN subject ON register.subject_id = subject.id";
         if ($cond) {
             $sql .= " WHERE $cond";

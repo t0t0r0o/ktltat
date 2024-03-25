@@ -11,7 +11,7 @@ function convertDateToVNFormat($date)
 //$gender là số
 // $gender là số 0, 1 hoặc 2
 function getGenderName($gender) {
-    $genderMap = [0 => "nam", 1 => "nữ", 2 => "khác"];
+    $genderMap = ["M" => "Nam", "F" => "Nữ", "K" => "Khác"];
     $genderName = $genderMap[$gender];
     return $genderName;
 }

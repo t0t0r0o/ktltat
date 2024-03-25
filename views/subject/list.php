@@ -2,7 +2,12 @@
 require "layout/header.php"
 ?>
 <h1>Danh sách Môn Học</h1>
-<a href="/?c=subject&a=add" class="btn btn-info">Add</a>
+<?php
+            if ( $_SESSION['role_id'] == 2) {
+                echo '<a href="/?c=subject&a=add" class="btn btn-info">Add</a>';
+            }
+?>
+<!-- <a href="/?c=subject&a=add" class="btn btn-info">Add</a> -->
 <form action="/" method="GET">
     <label class="form-inline justify-content-end">Tìm kiếm: <input type="search" name="search" class="form-control" value="<?= $search ?>">
         <button class="btn btn-danger">Tìm</button>

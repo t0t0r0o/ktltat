@@ -6,14 +6,17 @@ require "config.php";
 require "connectDB.php";
 require "functions.php";
 //Student
-require "model/Student.php";
-require "model/StudentRepository.php";
+require "model/User.php";
+require "model/UserRepository.php";
 //Subject
 require "model/Subject.php";
 require "model/SubjectRepository.php";
 //Register
 require "model/Register.php";
 require "model/RegisterRepository.php";
+//Session
+require "model/Session.php";
+require "model/SessionRepository.php";
 
 //router
 $c = $_GET["c"] ?? "student";

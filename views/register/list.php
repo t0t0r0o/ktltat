@@ -2,7 +2,11 @@
 require "layout/header.php"
 ?>
 <h1>Danh sách sinh viên đăng ký môn học</h1>
-<a href="/?c=register&a=add" class="btn btn-info">Add</a>
+<?php
+            if ( $_SESSION['role_id'] == 2) {
+                echo '<a href="/?c=register&a=add" class="btn btn-info">Add</a>';
+            }
+?>
 <!-- tham số params ở action seacrch ko có ý nghĩa với phương thức GET -->
 <form action="/" method="GET">
     <label class="form-inline justify-content-end">Tìm kiếm: <input type="search" name="search" class="form-control" value="<?= $search ?>">

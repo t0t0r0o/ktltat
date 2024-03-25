@@ -1,6 +1,6 @@
 <?php 
 define("SERVERNAME", "localhost");
 define("USERNAME", "root");
-define("PASSWORD", "");
-define("DBNAME", "qlsv_k38");
+define("PASSWORD", "Tru*ng0512");
+define("DBNAME", "qlsv");
 ?>

@@ -2,7 +2,11 @@
 require "layout/header.php"
 ?>
 <h1>Danh sách sinh viên</h1>
-<a href="/?a=add" class="btn btn-info">Add</a>
+<?php
+            if ( $_SESSION['role_id'] == 2) {
+                echo '<a href="/?c=student&a=add" class="btn btn-info">Add</a>';
+            }
+?>
 <form action="/" method="GET">
     <label class="form-inline justify-content-end">Tìm kiếm: <input type="search" name="search" class="form-control" value="<?=$search?>">
         <button class="btn btn-danger">Tìm</button>
@@ -23,17 +27,19 @@ require "layout/header.php"
     <tbody>
         <?php
         $order = 0;
-        foreach ($students as $student) {
+        // print_r($users);
+        // exit;
+        foreach ($users as $student) {
             $order++;
             ?>
             <tr>
                 <td><?= $order ?></td>
-                <td><?= $student->id ?></td>
-                <td><?= $student->name ?></td>
-                <td><?= convertDateToVNFormat($student->birthday) ?></td>
-                <td><?= getGenderName($student->gender) ?></td>
-                <td><a href="/?a=edit&id=<?=$student->id?>">Sửa</a></td>
-                    <td><button class="btn btn-danger btn-sm delete" data-url="/?a=delete&id=<?=$student->id?>">Xóa</button></td>
+                <td><?= $student['id'] ?></td>
+                <td><?= $student['name'] ?></td>
+                <td><?= convertDateToVNFormat($student['birthday']) ?></td>
+                <td><?= getGenderName($student['gender']) ?></td>
+                <td><a href="/?a=edit&id=<?=$student['id']?>">Sửa</a></td>
+                    <td><button class="btn btn-danger btn-sm delete" data-url="/?a=delete&id=<?=$student['id']?>">Xóa</button></td>
             </tr>
             <?php
         }
@@ -42,7 +48,7 @@ require "layout/header.php"
     </tbody>
 </table>
 <div>
-    <span>Số lượng: <?= count($students) ?></span>
+    <span>Số lượng: <?= count($users) ?></span>
 </div>
 <?php
 require "layout/footer.php"
