@@ -24,7 +24,7 @@ class userRepository {
         // exit;
         $result = $conn->query($sql);
         $users = [];
-        if ($result->num_rows > 0) {
+        if ($result && $result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
                 $user = ['id'=>$row["id"],'name'=> $row["name"],'birthday' => $row["birthday"],'gender' => $row["gender"]];
                 $users[] = $user;

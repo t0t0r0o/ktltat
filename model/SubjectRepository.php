@@ -24,7 +24,7 @@ class SubjectRepository {
         }
         $result = $conn->query($sql);
         $subjects = [];
-        if ($result->num_rows > 0) {
+        if ($result && $result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
                 $subject = new Subject($row["id"], $row["name"], $row["number_of_credit"]);
                 $subjects[] = $subject;

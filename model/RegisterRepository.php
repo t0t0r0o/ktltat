@@ -24,7 +24,7 @@ class RegisterRepository {
         }
         $result = $conn->query($sql);
         $registers = [];
-        if ($result->num_rows > 0) {
+        if ( $result && $result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
                 $register = new Register($row["id"], $row["student_id"], $row["subject_id"], $row["score"], $row["student_name"], $row["subject_name"]);
                 $registers[] = $register;

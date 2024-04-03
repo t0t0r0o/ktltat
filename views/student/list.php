@@ -12,6 +12,11 @@ require "layout/header.php"
         <button class="btn btn-danger">Tìm</button>
     </label>
 </form>
+<?php  
+    if($search) {
+        echo("Kết quả tìm kiếm cho: ".$search);
+    }
+?>
 <table class="table table-hover">
     <thead>
         <tr>

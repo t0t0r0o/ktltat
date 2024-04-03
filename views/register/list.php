@@ -14,6 +14,11 @@ require "layout/header.php"
     </label>
     <input type="hidden" name="c" value="register">
 </form>
+<?php  
+    if($search) {
+        echo("Kết quả tìm kiếm cho: ".$search);
+    }
+?>
 <table class="table table-hover">
     <thead>
         <tr>
