@@ -15,4 +15,12 @@ function getGenderName($gender) {
     $genderName = $genderMap[$gender];
     return $genderName;
 }
+
+
+// Sử dụng hàm addslashes để thêm ký tự escape vào trước các ký tự đặc biệt
+function filter_injection($input) {
+    $filtered_input = addslashes($input);
+    return $filtered_input;
+}
+
 ?>

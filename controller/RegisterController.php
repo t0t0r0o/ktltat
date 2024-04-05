@@ -15,9 +15,9 @@ class RegisterController
     {
 
         $registerRepository = new RegisterRepository();
-        $search = "";
+        $search = '';
         if (!empty($_GET["search"])) {
-            $search = $_GET["search"];
+            $search = filter_injection($_GET["search"]);
             $registers = $registerRepository->getBySearch($search);
         } else {
             $registers = $registerRepository->getAll();
@@ -71,7 +71,7 @@ class RegisterController
             header("Location: /");
             return;
         }
-        $id = $_GET["id"];
+        $id = filter_injection($_GET["id"]);
         $registerRepository = new RegisterRepository();
         $register = $registerRepository->find($id);
         require "views/register/edit.php";
@@ -86,12 +86,11 @@ class RegisterController
             header("Location: /");
             return;
         }
-        $id = $_POST["id"];
+        $id = filter_injection($_POST["id"]);
         $register = $registerRepository = new RegisterRepository();
         $register = $registerRepository->find($id);
-        $register->student_id = $_POST["student_id"];
-        $register->subject_id = $_POST["subject_id"];
-        $register->score = $_POST["score"];
+        $register->student_id = filter_injection($_POST["student_id"]);
+        $register->subject_id = filter_injection($_POST["subject_id"]);
 
         if ($registerRepository->update($register)) {
             $_SESSION["success"] = "Đã cập nhật đăng ký môn học thành công";
@@ -109,7 +108,7 @@ class RegisterController
             header("Location: /");
             return;
         }
-        $id = $_GET["id"];
+        $id = filter_injection($_GET["id"]);
         $register = $registerRepository = new RegisterRepository();
         if ($registerRepository->delete($id)) {
             $_SESSION["success"] = "Đã xóa đăng ký môn học thành công";

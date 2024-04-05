@@ -15,9 +15,9 @@ class SubjectController
     {
 
         $subjectRepository = new SubjectRepository();
-        $search = "";
+        $search = '';
         if (!empty($_GET["search"])) {
-            $search = $_GET["search"];
+            $search = filter_injection($_GET["search"]);
             $subjects = $subjectRepository->getBySearch($search);
         } else {
             $subjects = $subjectRepository->getAll();
@@ -63,7 +63,7 @@ class SubjectController
             header("Location: /");
             return;
         }
-        $id = $_GET["id"];
+        $id = filter_injection($_GET["id"]);
         $subjectRepository = new SubjectRepository();
         $subject = $subjectRepository->find($id);
         require "views/subject/edit.php";
@@ -78,11 +78,11 @@ class SubjectController
             header("Location: /");
             return;
         }
-        $id = $_POST["id"];
+        $id = filter_injection($_POST["id"]);
         $subject = $subjectRepository = new SubjectRepository();
         $subject = $subjectRepository->find($id);
-        $subject->name = $_POST["name"];
-        $subject->number_of_credit = $_POST["number_of_credit"];
+        $subject->name = filter_injection($_POST["name"]);
+        $subject->number_of_credit = filter_injection($_POST["number_of_credit"]);
 
 
         if ($subjectRepository->update($subject)) {
@@ -101,7 +101,7 @@ class SubjectController
             header("Location: /");
             return;
         }
-        $id = $_GET["id"];
+        $id = filter_injection($_GET["id"]);
         $subject = $subjectRepository = new SubjectRepository();
         if ($subjectRepository->delete($id)) {
             $_SESSION["success"] = "Đã xóa môn học thành công";

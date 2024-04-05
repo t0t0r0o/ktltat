@@ -3,9 +3,9 @@ require "layout/header.php"
 ?>
 <h1>Danh sách sinh viên đăng ký môn học</h1>
 <?php
-            if ( $_SESSION['role_id'] == 2) {
-                echo '<a href="/?c=register&a=add" class="btn btn-info">Add</a>';
-            }
+if ($_SESSION['role_id'] == 2) {
+    echo '<a href="/?c=register&a=add" class="btn btn-info">Add</a>';
+}
 ?>
 <!-- tham số params ở action seacrch ko có ý nghĩa với phương thức GET -->
 <form action="/" method="GET">
@@ -14,10 +14,10 @@ require "layout/header.php"
     </label>
     <input type="hidden" name="c" value="register">
 </form>
-<?php  
-    if($search) {
-        echo("Kết quả tìm kiếm cho: ".$search);
-    }
+<?php
+if ($search) {
+    echo ("Kết quả tìm kiếm cho: " . $search);
+}
 ?>
 <table class="table table-hover">
     <thead>
@@ -27,9 +27,12 @@ require "layout/header.php"
             <th>Tên SV</th>
             <th>Mã MH</th>
             <th>Tên MH</th>
-            <th>Điểm</th>
-            <th></th>
-            <th></th>
+            <?php
+            if ($_SESSION['role_id'] == 2) {
+                echo '<th></th>';
+                echo '<th></th>';
+            }
+            ?>
         </tr>
     </thead>
     <tbody>
@@ -37,18 +40,20 @@ require "layout/header.php"
         $order = 0;
         foreach ($registers as $register) {
             $order++;
-            ?>
+        ?>
             <tr>
                 <td><?= $order ?></td>
-                <td><?= $register->student_id ?></td>
+                <td><?= $register->student_msv ?></td>
                 <td><?= $register->student_name ?></td>
                 <td><?= $register->subject_id ?></td>
                 <td><?= $register->subject_name ?></td>
-                <td><?= $register->score ?></td>
-                <td><a href="/?c=register&a=edit&id=<?= $register->id ?>">Cập nhật điểm</a></td>
-                <td><button class="btn btn-danger btn-sm delete" data-url="/?c=register&a=delete&id=<?= $register->id ?>">Xóa</button></td>
+                <?php
+                if ($_SESSION['role_id'] == 2) {
+                    echo '<td><button class="btn btn-danger btn-sm delete" data-url="/?c=register&a=delete&id=<?= $register->id ?>">Xóa</button></td>';
+                }
+                ?>
             </tr>
-            <?php
+        <?php
         }
         ?>
     </tbody>

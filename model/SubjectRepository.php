@@ -35,8 +35,8 @@ class SubjectRepository {
 
     function save($data) {
         global $conn;
-        $name = $data["name"];
-        $number_of_credit = $data["number_of_credit"];
+        $name = filter_injection($data["name"]);
+        $number_of_credit = filter_injection($data["number_of_credit"]);
         $sql = "INSERT INTO subject (name, number_of_credit) 
             VALUES('$name', $number_of_credit)";
         if ($conn->query($sql)) {
@@ -58,10 +58,10 @@ class SubjectRepository {
 
     function update($subject) {
         global $conn;
-        $name = $subject->name;
-        $number_of_credit = $subject->number_of_credit;
-        $gender = $subject->gender;
-        $id = $subject->id;
+        $name = filter_injection($subject->name);
+        $number_of_credit = filter_injection($subject->number_of_credit);
+        $gender = filter_injection($subject->gender);
+        $id = filter_injection($subject->id);
         $sql = "UPDATE subject SET name='$name',number_of_credit='$number_of_credit' WHERE id=$id";
 
         if ($conn->query($sql)) {

@@ -27,8 +27,8 @@ class AuthController
         if ($data) {
             $user = $userRepository->login($data);
             if ($user) {
-                $_SESSION['user_id'] = $user['id'];
-                $_SESSION['role_id'] = $user['role_id'];
+                $_SESSION['user_id'] = filter_injection($user['id']);
+                $_SESSION['role_id'] = filter_injection($user['role_id']);
                 header("Location: /");
             } else {
                 $_SESSION["error"] = $userRepository->error;

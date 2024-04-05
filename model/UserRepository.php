@@ -16,17 +16,17 @@ class userRepository {
 
     function fetch($cond = null) {
         global $conn;
-        $sql = "SELECT * FROM user";
+        $sql = "SELECT * FROM user ";
         if ($cond) {
             $sql .= " WHERE role_id = 1 AND $cond ";
+        } else {
+            $sql .= "WHERE role_id = 1";
         }
-        // print_r($sql);
-        // exit;
         $result = $conn->query($sql);
         $users = [];
         if ($result && $result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
-                $user = ['id'=>$row["id"],'name'=> $row["name"],'birthday' => $row["birthday"],'gender' => $row["gender"]];
+                $user = ['id'=>$row["id"],'name'=> $row["name"],'birthday' => $row["birthday"],'gender' => $row["gender"],'msv'=> $row["msv"], 'town' => $row['town'], 'class' => $row["class"]];
                 $users[] = $user;
             }
         }
@@ -38,8 +38,11 @@ class userRepository {
         $name=$data["name"];
         $birthday=$data["birthday"];
         $gender=$data["gender"];
-        $sql="INSERT INTO user (name, birthday, gender)
-        VALUES ('$name', '$birthday', $gender)
+        $town=$data["town"];
+        $msv=$data["msv"];
+        $class=$data["class"];
+        $sql="INSERT INTO user (name,username,password,role_id, birthday, gender, town, msv, class)
+        VALUES ('$name', '$msv','$msv',1, '$birthday', '$gender', '$town', '$msv', '$class')
         ";
         if($conn->query($sql)){
             return true;
@@ -60,11 +63,11 @@ class userRepository {
 
     function update($user){
         global $conn;
-        $name=$user->name;
-        $birthday=$user->birthday;
-        $gender=$user->gender;
-        $id=$user->id;
-        $sql="UPDATE user SET name='$name',birthday='$birthday',gender=$gender WHERE id=$id";
+        $name=$user["name"];
+        $birthday=$user["birthday"];
+        $gender=$user["gender"];
+        $id=$user["id"];
+        $sql="UPDATE user SET name='$name',birthday='$birthday',gender='$gender' WHERE id=$id";
 
         if($conn->query($sql)){
             return true;
@@ -95,10 +98,16 @@ class userRepository {
         $user = [];
         if ($result->num_rows > 0) {
             $row = $result->fetch_assoc();
-            $user = ['id'=>$row["id"],'name'=> $row["name"],'birthday' => $row["birthday"],'gender' => $row["gender"], 'role_id' => $row["role_id"]];
+            $user = ['id'=>$row["id"],'name'=> $row["name"],'birthday' => $row["birthday"],'gender' => $row["gender"], 'role_id' => $row["role_id"],'msv'=> $row["msv"], 'town' => $row['town'], 'class' => $row["class"]];
             $this->user = $user;
         }
         return $user;
+    }
+
+
+    function get_username_by_student_id($student_id) {
+        $user = $this->find($student_id);
+        return $user['name'];
     }
 }
 

@@ -26,7 +26,11 @@ require "layout/header.php"
             <th>Mã MH</th>
             <th>Tên</th>
             <th>Số tín chỉ</th>
-            <th colspan="2">Tùy Chọn</th>
+            <?php
+            if ( $_SESSION['role_id'] == 2) {
+                echo '<th colspan="2">Tùy Chọn</th>';
+            }
+            ?>
         </tr>
     </thead>
     <tbody>
@@ -41,8 +45,12 @@ require "layout/header.php"
                 <td><?= $subject->id ?></td>
                 <td><?= $subject->name ?></td>
                 <td><?= $subject->number_of_credit ?></td>
-                <td><a href="/?c=subject&a=edit&id=<?= $subject->id ?>">Sửa</a></td>
-                <td><button class="btn btn-danger btn-sm delete" data-url="/?c=subject&a=delete&id=<?= $subject->id ?>">Xóa</button></td>
+                <?php
+                if ( $_SESSION['role_id'] == 2) {
+                    echo '<td><a href="/?c=subject&a=edit&id=<?= $subject->id ?>">Sửa</a></td>';
+                    echo '<td><button class="btn btn-danger btn-sm delete" data-url="/?c=subject&a=delete&id=<?= $subject->id ?>">Xóa</button></td>';
+                }
+                ?>
             </tr>
             <?php
         }

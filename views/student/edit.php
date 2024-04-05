@@ -3,24 +3,24 @@ require "layout/header.php"
 ?>
 <h1>Chỉnh sửa sinh viên</h1>
 <form action="/?a=update" method="POST">
-    <input type="hidden" name="id" value="<?= $student->id ?>">
+    <input type="hidden" name="id" value="<?= $user['id'] ?>">
     <div class="container">
         <div class="row">
             <div class="col-md-5">
                 <div class="form-group">
                     <label>Tên</label>
-                    <input type="text" class="form-control" placeholder="Tên của bạn" required name="name" value="<?= $student->name ?>">
+                    <input type="text" class="form-control" placeholder="Tên của bạn" required name="name" value="<?= $user['name'] ?>">
                 </div>
                 <div class="form-group">
                     <label>Birthday</label>
-                    <input type="date" class="form-control" placeholder="Ngày sinh của bạn" required name="birthday" value="<?= $student->birthday ?>">
+                    <input type="date" class="form-control" placeholder="Ngày sinh của bạn" required name="birthday" value="<?= $user['birthday'] ?>">
                 </div>
                 <div class="form-group">
                     <label>Chọn Giới tính</label>
                     <select class="form-control" id="gender" name="gender" required>
-                        <option value="0" <?= $student->gender == 0 ? "selected" : "" ?> >Nam</option>
-                        <option value="1" <?= $student->gender == 1 ? "selected" : "" ?>>Nữ</option>
-                        <option value="2" <?= $student->gender == 2 ? "selected" : "" ?> >Khác</option>
+                        <option value="M" <?= $user['gender'] == "M" ? "selected" : "" ?> >Nam</option>
+                        <option value="F" <?= $user['gender'] == "F" ? "selected" : "" ?>>Nữ</option>
+                        <option value="K" <?= $user['gender'] == "K" ? "selected" : "" ?> >Khác</option>
                     </select>
                 </div>
                 <div class="form-group">

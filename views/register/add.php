@@ -13,7 +13,7 @@ require "layout/header.php"
                         <?php
                         foreach ($students as $student) {
                             ?>
-                            <option value="<?=$student->id?>"><?=$student->id?> - <?=$student->name?></option>
+                            <option value="<?=$student['id']?>"><?=$student['msv']?> - <?=$student['name']?></option>
                             <?php
                         }
                         ?>

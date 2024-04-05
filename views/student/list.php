@@ -25,6 +25,8 @@ require "layout/header.php"
             <th>Tên</th>
             <th>Ngày Sinh</th>
             <th>Giới Tính</th>
+            <th>Quê quán</th>
+            <th>Lớp</th>
             <th></th>
             <th></th>
         </tr>
@@ -39,10 +41,12 @@ require "layout/header.php"
             ?>
             <tr>
                 <td><?= $order ?></td>
-                <td><?= $student['id'] ?></td>
+                <td><?= $student['msv'] ?></td>
                 <td><?= $student['name'] ?></td>
                 <td><?= convertDateToVNFormat($student['birthday']) ?></td>
                 <td><?= getGenderName($student['gender']) ?></td>
+                <td><?= $student['town'] ?></td>
+                <td><?= $student['class'] ?></td>
                 <td><a href="/?a=edit&id=<?=$student['id']?>">Sửa</a></td>
                     <td><button class="btn btn-danger btn-sm delete" data-url="/?a=delete&id=<?=$student['id']?>">Xóa</button></td>
             </tr>

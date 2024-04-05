@@ -22,9 +22,9 @@ class StudentController
             require "views/student/info.php";
             return;
         }
-        $search = "";
+        $search = '';
         if (!empty($_GET["search"])) {
-            $search = $_GET["search"];
+            $search = filter_injection($_GET["search"]);
             $users = $userRepository->getBySearch($search);
         } else {
             $users = $userRepository->getAll();
@@ -65,12 +65,12 @@ class StudentController
     //Edit
     function edit()
     {   
-        if($_SESSION['role_id'] == 1) {
-            $_SESSION["error"] = 'Not have permission';
-            header("Location: /");
-            return;
-        }
-        $id = $_GET["id"];
+        // if($_SESSION['role_id'] == 1) {
+        //     $_SESSION["error"] = 'Not have permission';
+        //     header("Location: /");
+        //     return;
+        // }
+        $id = filter_injection($_GET["id"]);
         $userRepository = new UserRepository();
         $user = $userRepository->find($id);
         require "views/student/edit.php";
@@ -80,17 +80,18 @@ class StudentController
 
     function update()
     {
-        $id = $_POST["id"];
-        $user = $userRepository = new UserRepository();
-        if($_SESSION['user_id'] != $id) {
+        $id = filter_injection($_POST["id"]);
+        $userRepository = new UserRepository();
+        if($_SESSION['user_id'] != $id && $_SESSION['role_id'] == 1) {
             $_SESSION["error"] = 'Not have permission';
             header("Location: /");
             return;
         }
         $user = $userRepository->find($id);
-        $user->name = $_POST["name"];
-        $user->birthday = $_POST["birthday"];
-        $user->gender = $_POST["gender"];
+        print_r($user);
+        $user["name"] = filter_injection($_POST["name"]);
+        $user["birthday"] = filter_injection($_POST["birthday"]);
+        $user["gender"] = filter_injection($_POST["gender"]);
 
         if ($userRepository->update($user)) {
             $_SESSION["success"] = "Đã cập nhật sinh viên thành công";
@@ -108,7 +109,7 @@ class StudentController
             header("Location: /");
             return;
         }
-        $id = $_GET["id"];
+        $id = filter_injection($_GET["id"]);
         $user = $userRepository = new UserRepository();
         if ($userRepository->delete($id)) {
             $_SESSION["success"] = "Đã xóa sinh viên thành công";

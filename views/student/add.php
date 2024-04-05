@@ -11,15 +11,27 @@ require "layout/header.php"
                     <input type="text" class="form-control" placeholder="Tên của bạn" required name="name">
                 </div>
                 <div class="form-group">
+                    <label>Mã sinh viên</label>
+                    <input type="text" class="form-control" placeholder="Mã sinh viên" required name="msv">
+                </div>
+                <div class="form-group">
+                    <label>Lớp</label>
+                    <input type="text" class="form-control" placeholder="Lớp" required name="class">
+                </div>
+                <div class="form-group">
+                    <label>Quê quán</label>
+                    <input type="text" class="form-control" placeholder="Quê quán" required name="town">
+                </div>
+                <div class="form-group">
                     <label>Birthday</label>
                     <input type="date" class="form-control" placeholder="Ngày sinh của bạn" required name="birthday">
                 </div>
                 <div class="form-group">
                     <label>Chọn Giới tính</label>
                     <select class="form-control" id="gender" name="gender" required>
-                        <option value="0">Nam</option>
-                        <option value="1">Nữ</option>
-                        <option value="2">Khác</option>
+                        <option value="M">Nam</option>
+                        <option value="F">Nữ</option>
+                        <option value="K">Khác</option>
                     </select>
                 </div>
                 <div class="form-group">
