@@ -19,7 +19,7 @@ function getGenderName($gender) {
 
 // Sử dụng hàm addslashes để thêm ký tự escape vào trước các ký tự đặc biệt
 function filter_injection($input) {
-    $filtered_input = addslashes($input);
+    $filtered_input = addslashes(strip_tags($input));
     return $filtered_input;
 }
 

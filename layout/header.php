@@ -13,10 +13,10 @@
         global $c;
         ?>
         <div class="container" style="margin-top:20px;">
-        <a href="/" class="<?=$c=='student' ? "active": ""?> btn btn-info">Students</a>
-			<a href="/?c=subject" class="<?=$c=='subject' ? "active": ""?> btn btn-info">Subject</a>
-			<a href="/?c=register" class="<?=$c=='register' ? "active": ""?> btn btn-info">Register</a>
-			<a href="/?c=auth&a=logout" class="flex-end ">Log out</a>
+            <a href="/" class="<?=$c=='student' ? "active": ""?> btn btn-info">Students</a>
+            <a href="/?c=subject" class="<?=$c=='subject' ? "active": ""?> btn btn-info">Subject</a>
+            <a href="/?c=register" class="<?=$c=='register' ? "active": ""?> btn btn-info">Register</a>
+            <a href="/?c=auth&a=logout" class="btn btn-danger">Log out</a>
             <?php
             $message = "";
             //Nếu tồn tại và có giá trị success

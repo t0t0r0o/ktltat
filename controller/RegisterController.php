@@ -20,7 +20,11 @@ class RegisterController
             $search = filter_injection($_GET["search"]);
             $registers = $registerRepository->getBySearch($search);
         } else {
-            $registers = $registerRepository->getAll();
+            if($_SESSION['role_id']  == 1) {
+                $registers = $registerRepository->get_by_user_id($_SESSION['user_id']);
+            } else {
+                $registers = $registerRepository->getAll();
+            }
             // var_dump($registers);
         }
         require "views/register/list.php";

@@ -78,5 +78,11 @@ class RegisterRepository {
         }
     }
 
+    function get_by_user_id($user_id) {
+        $cond = "user.id = $user_id ";
+        $registers = $this->fetch($cond);
+        return $registers;
+    }
+
 }
 ?>
