@@ -14,9 +14,6 @@ require "model/SubjectRepository.php";
 //Register
 require "model/Register.php";
 require "model/RegisterRepository.php";
-//Session
-require "model/Session.php";
-require "model/SessionRepository.php";
 
 //router
 $c = $_GET["c"] ?? "student";
